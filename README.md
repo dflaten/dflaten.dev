@@ -1,8 +1,9 @@
-# vijayp.dev
+# dflaten.dev
 
-This is the repo for my personal website, [vijayp.dev](https://www.vijayp.dev). It's written using
+This is the repo for my personal website, [dflaten.dev](https://www.dflaten.dev). It's written using
 plain HTML and CSS (there's actually no Javascript at all), along with a single Python build script
-that converts my blog posts from Markdown to HTML and creates the blog index page.
+that converts my blog posts from Markdown to HTML and creates the blog index page. I forked the sidet
+from @vijayp[https://github.com/arnath/vijayp.dev]
 
 ## Usage
 
