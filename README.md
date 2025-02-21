@@ -2,8 +2,10 @@
 
 This is the repo for my personal website, [dflaten.dev](https://www.dflaten.dev). It's written using
 plain HTML and CSS (there's actually no Javascript at all), along with a single Python build script
-that converts my blog posts from Markdown to HTML and creates the blog index page. I forked the sidet
-from @vijayp[https://github.com/arnath/vijayp.dev]
+that converts my blog posts from Markdown to HTML and creates the blog index page. I forked this
+from [@vijayp](https://github.com/arnath/vijayp.dev) as I appreciated its minimal html/javascript and
+its ability to easily add new entries to a blog two things I had been looking for when trying to 
+create my own site.
 
 ## Usage
 
