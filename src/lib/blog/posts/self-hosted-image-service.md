@@ -20,5 +20,8 @@ Will use immich[https://immich.app/] running on an Ubuntu Machine to handle the 
 Every day a cron job will be run to upload the new images/videos to S3 via the `rclone` utility. [This repo](https://github.com/dflaten/photo-video-backup) is where those
 scripts will live.
 
+### Setup
+I first downloaded the repo on my Ubuntu
+
 ### Problems Encountered
 1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required.
