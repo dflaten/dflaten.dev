@@ -9,9 +9,19 @@ which gets us unlimited photos (we have 40 GB worth) and 100 GB of Video (we are
 upgrade to get more video storage but it would cost 60$ per year for 1 TB of video.
 
 Instead of doing this I'm moving to using a self hosted option where I will use my Ubuntu based server with a 2 TB drive to
-store photos and videos with a backup to S3 Glacier - Deep Archive for long term storage.
+store photos and videos with a backup to the could somewhere. I evaluated two options for cloud storage:
 
-At ~500 GB of storage S3 will charge me $21.60 per year to store the photos/videos.
+1. S3 Glacier - Deep Archive for long term storage.
+2. Backblaze
+
+At ~500 GB of storage S3 will charge me $21.60 per year to store the photos/videos. However when I need to restore the
+backup the S3 retrieval costs would be ~100 dollars for 1 TB. See [pricing info here](https://aws.amazon.com/s3/pricing/).
+
+Backblaze costs ~ 6 dollars per month for a terrabyte of storage. This is cheaper than general AWS S3 storage but more expensive
+(if you aren't thawing often) than S3 Glacial.
+
+Due to the fact that I expect to very rarely thaw/access my photos I'm going to go with S3 for storage and if my access patterns
+change will re-evaluate.
 
 ### Basic Parts
 
