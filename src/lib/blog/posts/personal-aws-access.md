@@ -29,7 +29,7 @@ You will need to download the app on  your phone and log in to your root user.
 
 3. Go to your user and enable MFA by clicking on the `Security Credentials` section. You will be able to add the App by
 following the instructions as listed.
-~[EnableMFA](EnableMFA.jpg)
+~[EnableMFA](./EnableMFA.jpg)
 
 #### Create the Admin User
 
