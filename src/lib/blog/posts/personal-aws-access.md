@@ -1,12 +1,12 @@
 ---
-title: Managing Access for Personal AWS Account
+title: Setting up access for a personal AWS Account
 date: 2025-03-09
 published: true
 ---
 
 AWS offers many of its services for free or up-to-a-point free so it can be nice to have a personal AWS account
 setup to build things on. Setting up access in a secure manner is a prudent to prevent someone else from gaining
-access and racking up unneccessary costs. In this post I'll outline the basic pieces you will want to setup with
+access and racking up false charges. In this post I'll outline the basic pieces you will want to setup with
 your AWS Account to prevent unauthorized access while making it easy to do development.
 
 I reccomend you use a password manager to generate/save the passwords for the users you will create as part of this
@@ -23,22 +23,22 @@ By the end of this you will have:
 1. First create your aws account [here](https://aws.amazon.com/). You will be assigned an account id and granted access to
 a root user for the account.
 
-2. The first thing you should do is log in with your root user and enable 2-Factor Authentication. There are lots of
-options  here but we will go with using an authenticator app on your phone like [Duo  Mobile](https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app).
-You will need to download the app on  your phone and log in to your root user.
+2. First log in with your root user credentials and enable 2-Factor Authentication for the root account. There are lots of
+options here but we will go with using an authenticator app on your phone like [Duo  Mobile](https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app).
+You will need to download the app on  your phone and log in to your root user in the AWS Console.
 
-3. Go to your user and enable MFA by clicking on the `Security Credentials` section. You will be able to add the App by
+3. Search for `IAM` in the console and click on `Users` to find your root user, enable MFA by clicking on the `Security Credentials` section. You will be able to add the App by
 following the instructions as listed.
 
-![EnableMFA](./EnableMFA.jpg)
+![`Here's the security credentials section`](./EnableMFA.jpg)
 
 #### Create the Admin User
 
 4. We will now create an Admin user which will be used to log in to the AWS account from now on. Root user should rarely be used
-since it has such wide access to the account. To do so go to the `IAM Identity Center` in AWS and enable it. Then go to users and create a user.
-I reccomend you create a `Admin` user first which has Admin permissions that is the `AdministratorAccess` permission. Then
-enable MFA for this user and verify the email for it through the UI. Also make sure you assign the `Admin` user to your AWS account
-under `AWS Accounts`.
+since it has such wide access to the account. To do so go to the `IAM Identity Center` in AWS and enable it. Then go to users (in IAM Identify Center) and create
+a user. Create a `Admin` user first which has Admin permissions that is the `AdministratorAccess` permission but you may want something more limited.
+If you aren't familiar with IAM do a bit of research on how access is granted via policies before continuing. Then enable MFA for this user and verify the email for
+it through the UI. Also make sure you assign the `Admin` user to your AWS account under `AWS Accounts`.
 
 #### Create the Developer User
 5. After this you should log out of your `root` user and log in to your `Admin` user. Go back the `IAM Identity Center` and create a new

@@ -19,6 +19,7 @@ An LLM is a neural network trained to predict the next word in a sequence given 
 The decoder generates coherent responses by predicting the next word in the sequence.
 * **Self-supervised learning** - Use vast amounts of unstructured text data to do the supervised learning.
 * **Fine-tuning** - Adapt the LLm to specific tasks like a chatbot or code generation.
+
 #### Tokenization
 #### Transformers
 #### Self-Supervised Learning
