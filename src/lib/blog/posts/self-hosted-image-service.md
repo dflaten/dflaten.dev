@@ -1,5 +1,5 @@
 ---
-title: Self Hosting My Photo/Video Storage
+title: Self Hosting a Photo/Video System
 date: 2025-02-28
 published: false
 ---
@@ -9,7 +9,7 @@ which gets us unlimited photos (we have 40 GB worth) and 100 GB of Video (we are
 upgrade to get more video storage but it would cost 60$ per year for 1 TB of video.
 
 Instead of doing this I'm moving to using a self hosted option where I will use my Ubuntu based server with a 2 TB drive to
-store photos and videos with a backup to the could somewhere. I evaluated two options for cloud storage:
+store photos and videos with a backup to the could somewhere for long term storage. I evaluated two options for cloud storage:
 
 1. S3 Glacier - Deep Archive for long term storage.
 2. Backblaze
@@ -25,13 +25,24 @@ change will re-evaluate.
 
 ### Basic Parts
 
-Will use immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images in general.
+I used immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
+Android App is provided which makes it easy to upload photos and videos from your phone. I bought an external hard drive and
+mounted it using the `.env` [file](https://immich.app/docs/install/environment-variables/) to set the upload location for photos
+and videos to the usb drive.
 
 Every day a cron job will be run to upload the new images/videos to S3 via the `rclone` utility. [This repo](https://github.com/dflaten/photo-video-backup) is where those
 scripts will live.
 
 ### Setup
-I first downloaded the repo on my Ubuntu
+1. First you will need docker so follow the instructions [on docker's docs page](https://docs.docker.com/engine/install/ubuntu/) to get
+it installed on your Ubuntu machine. I reccomend the `apt-get` path so you can update in the future as needed. I needed to
+start the service after install with `sudo service docker start`.
+
+
+I first downloaded the repo on my Ubuntu machine then followed the instructions [here](https://immich.app/docs/install/docker-compose/#upgrading) for
+install as well as upgrading.
+
 
 ### Problems Encountered
-1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required.
+1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required. You
+need to put in the entire `http://numbers:port` in order for it to access correctly.
