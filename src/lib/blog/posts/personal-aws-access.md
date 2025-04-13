@@ -58,3 +58,5 @@ under `AWS IAM Identity Center credentials (Recommended)` to get the required fi
 ### Wrapping Up
 You now have secure access to your AWS account and can make calls via the cli to AWS after authenticating. The nice
 part about the Identify Center is it will automatically try to authenticate if you lose access.
+
+You can login now with the command line `aws sso login` which will open a web browser to get you credentials for the cli.
