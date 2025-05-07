@@ -12,12 +12,36 @@ Instead of doing this I'm moving to using a self hosted option where I will use 
 store photos and videos with a backup to the could somewhere for long term storage. I evaluated two options for cloud storage:
 
 1. S3 - Glacier Deep Archive for long term storage.
-2. Backblaze
+2. Backblaze - Backup Solution that has cheaper retrieval costs than pure S3.
 
+## Basic Parts
+
+I used immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
+Android App is provided which makes it easy to upload photos and videos from your phone. I bought an external hard drive and
+mounted it using the `.env` [file](https://immich.app/docs/install/environment-variables/) to set the upload location for photos
+and videos to the usb drive.
+
+Every day a cron job will be run to upload the new images/videos to S3 via the `rclone` utility. [This repo](https://github.com/dflaten/photo-video-backup) is where those
+scripts will live.
+
+### Setup
+1. First you will need docker so follow the instructions [on docker's docs page](https://docs.docker.com/engine/install/ubuntu/) to get
+it installed on your Ubuntu machine. I reccomend the `apt-get` path so you can update in the future as needed. I needed to
+start the service after install with `sudo service docker start`.
+
+I first downloaded the repo on my Ubuntu machine then followed the instructions [here](https://immich.app/docs/install/docker-compose/#upgrading) for
+install as well as upgrading.
+
+### Problems Encountered
+1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required. You
+need to put in the entire `http://numbers:port` in order for it to access correctly.
+
+2. A backup incase local storage fails. I'm only using a
+
+## Cloud Backup Cost Analysis
 Backblaze costs ~ 6 dollars per month for a terrabyte of storage. This is more expensive than general AWS S3 storage but the
 closer you get to 1TB the closer the costs come to evening out.
 
-## Cost Analysis
 This is based on my current library of photos and videos. My rate of growth is probably less than 1,000 new videos and 100 new
 photos every year and costs as you will see do not increase greatly. I can also explore Tiered S3 access or Glacier in the future
 if I want to save on costs.
@@ -56,29 +80,7 @@ This gets a bit pricier but is not too bad:
 * GET and SELECT data processing: $0.0015/GB
 * 185 GB × $0.0015/GB = $0.28
 
+**Total Cost:** $16.93 and that is only if I need to pull the photos back out of S3.
+
 Due to the fact that I expect to very rarely thaw/access my photos I'm going to go with S3 for storage and if my access patterns
 change will re-evaluate.
-
-## Basic Parts
-
-I used immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
-Android App is provided which makes it easy to upload photos and videos from your phone. I bought an external hard drive and
-mounted it using the `.env` [file](https://immich.app/docs/install/environment-variables/) to set the upload location for photos
-and videos to the usb drive.
-
-Every day a cron job will be run to upload the new images/videos to S3 via the `rclone` utility. [This repo](https://github.com/dflaten/photo-video-backup) is where those
-scripts will live.
-
-### Setup
-1. First you will need docker so follow the instructions [on docker's docs page](https://docs.docker.com/engine/install/ubuntu/) to get
-it installed on your Ubuntu machine. I reccomend the `apt-get` path so you can update in the future as needed. I needed to
-start the service after install with `sudo service docker start`.
-
-
-I first downloaded the repo on my Ubuntu machine then followed the instructions [here](https://immich.app/docs/install/docker-compose/#upgrading) for
-install as well as upgrading.
-
-
-### Problems Encountered
-1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required. You
-need to put in the entire `http://numbers:port` in order for it to access correctly.

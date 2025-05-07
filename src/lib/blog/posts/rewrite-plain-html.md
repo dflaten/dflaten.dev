@@ -11,7 +11,7 @@ easy way to get there.
 
 ### Basic Parts
 
-[This repo](https://github.com/dflaten/dflaten.devhttps://github.com/dflaten/dflaten.dev) contains all the
+[This repo](https://github.com/dflaten/dflaten.dev) contains all the
 things needed to build the static resources. I plan on having this hosted on Cloudfare Pages with a custom domain.
 
 ### Problems Encountered
