@@ -15,3 +15,8 @@ commands:
 
 - `make build` - Builds the site and outputs it into the `dist/` folder.
 - `make serve` - Uses Python's `http.server` to serve the website at `http://localhost:8080`.
+
+## Changes
+For python development (build script) use `uv sync` to setup your venv after cloning the repo. 
+
+For typing I'm using [pyrefly](https://pyrefly.org/), check typing with `uv run pyrefly check`.
