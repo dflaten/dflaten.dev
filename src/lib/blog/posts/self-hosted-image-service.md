@@ -36,7 +36,14 @@ install as well as upgrading.
 1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required. You
 need to put in the entire `http://numbers:port` in order for it to access correctly.
 
-2. A backup incase local storage fails. I'm only using a
+2. A backup incase local storage fails. I'm only using a 2 TB drive hooked to my server which could fail. I need redundency and 
+will for now probably look to the cloud to provide.
+
+3. If your machine is ever resarted and then you have trouble getting the clusters to start back up and connect to your devices there are
+a few things you can try:
+    * First try updating your server by running: `docker compose pull && docker compose up --force-recreate`
+    * If you are using a different location than the default you may need to re mount the usb drive where your photos/videos are stored you can do
+    a command like `sudo mount /dev/sdb1 /media/usb` to remount it. 
 
 ## Cloud Backup Cost Analysis
 Backblaze costs ~ 6 dollars per month for a terrabyte of storage. This is more expensive than general AWS S3 storage but the
