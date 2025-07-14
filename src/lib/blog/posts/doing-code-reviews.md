@@ -26,12 +26,12 @@ Code reviews provide the reviewer and reviewee an opportunity to learn and grow.
 This is a list you can use when reviewing any pull request. To be most effective you should have an agreed upon list you have created with all team members input.
 
 #### Pull Request Checklist
-- [] Does the description describe the problem being addressed?
-- [] Are you clear about the problem being addressed in the code? 
-- [] Is the PR focused on one and only one issue?
-- [] Is the PR less than ~500 lines?
-- [] Is the build passing?
-- [] Unit Tests cover the majority of branches?
-- [] Is Integration testing included or at least was it deployed and tested?
-- [] Are the methods in the PR no bigger than a paragraph?
+- [ ] Does the description describe the problem being addressed?
+- [ ] Are you clear about the problem being addressed in the code? 
+- [ ] Is the PR focused on one and only one issue?
+- [ ] Is the PR less than ~500 lines?
+- [ ] Is the build passing?
+- [ ] Unit Tests cover the majority of branches?
+- [ ] Is Integration testing included or at least was it deployed and tested?
+- [ ] Are the methods in the PR no bigger than a paragraph?
 
