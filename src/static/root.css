@@ -142,3 +142,15 @@ header {
 .nav-bar-social-link {
     line-height: 0;
 }
+/* We don't want bullets in front of our checklists*/
+li:has(input[type="checkbox"]) {
+    list-style-type: none;
+}
+
+/* For older browsers without :has() support */
+ul li input[type="checkbox"] {
+    margin-left: -1.2em;
+}
+ul li:has(input[type="checkbox"]) {
+    list-style-type: none;
+}
