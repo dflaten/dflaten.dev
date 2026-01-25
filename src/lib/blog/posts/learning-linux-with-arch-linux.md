@@ -21,7 +21,7 @@ a USB. Almost immediately upon loading it I ran into my first big problem.
 
 During booting you are greeted with a screen like this:
 
-![`First install screen.`](./learning-linux-with-arch-linux.jpg)
+![`First install screen.`](./arch_linux_first_install_screen.png)
 
 If I let the system attempt to boot up the live image on my pc it will start to load into RAM but my screen would go to black.
 
