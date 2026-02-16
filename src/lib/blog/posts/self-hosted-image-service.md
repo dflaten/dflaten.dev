@@ -1,36 +1,50 @@
 ---
-title: Self Hosting a Photo/Video System
-date: 2025-02-28
-published: false
+title: Self Hosting a Personal Photo/Video Storage System 
+date: 2026-02-16
+published: true 
 ---
 
 I've started setting up a service to manage the storage of Photos/Videos for my family. Currently we are using Amazon Photos
 which gets us unlimited photos (we have 40 GB worth) and 100 GB of Video (we are using 100 GB) for 20$ per year. I could
-upgrade to get more video storage but it would cost 60$ per year for 1 TB of video.
+upgrade to get more video storage but it would cost 60$ per year for 1 TB of video. In addition to cost I also don't have as much control over my photos/videos and makes me reliant on a system that could be shutdown at any time.
 
-Instead of doing this I'm moving to using a self hosted option where I will use my Ubuntu based server with a 2 TB drive to
-store photos and videos with a backup to the could somewhere for long term storage. I evaluated two options for cloud storage:
+To give myself better control over these videos and help my learn more on system management I'm moving to using a self hosted option where I will use my Ubuntu based server with a 2 TB drive to
+store photos and videos with a backup to the could somewhere for long term storage. Monetary cost is not worth the time it requires to manage your own system so if you are considering I recommend you identify more reasons than cost to move to this model. Also you will want to have an offsite backup somewhere in case your local drives fail for some reason. I evaluated two options for cloud storage:
 
 1. S3 - Glacier Deep Archive for long term storage.
 2. Backblaze - Backup Solution that has cheaper retrieval costs than pure S3.
 
 ## Basic Parts
 
-I used immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
+I used Immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
 Android App is provided which makes it easy to upload photos and videos from your phone. I bought an external hard drive and
 mounted it using the `.env` [file](https://immich.app/docs/install/environment-variables/) to set the upload location for photos
 and videos to the usb drive.
 
-Every day a cron job will be run to upload the new images/videos to S3 via the `rclone` utility. [This repo](https://github.com/dflaten/photo-video-backup) is where those
+Every week a cron job will be run to upload the new images/videos to S3 via a created script. [This repo](https://github.com/dflaten/photo-video-backup) is where those
 scripts will live.
 
 ### Setup
+
+#### Immich
 1. First you will need docker so follow the instructions [on docker's docs page](https://docs.docker.com/engine/install/ubuntu/) to get
 it installed on your Ubuntu machine. I reccomend the `apt-get` path so you can update in the future as needed. I needed to
 start the service after install with `sudo service docker start`.
 
 I first downloaded the repo on my Ubuntu machine then followed the instructions [here](https://immich.app/docs/install/docker-compose/#upgrading) for
 install as well as upgrading.
+
+#### S3 Backup Process
+The readme explains how to deploy the infrastructure/permissions needed to execute the backup script. Then you just need a 
+
+The cron job:
+
+If you haven't created any cronjobs yet on your Ubuntu machine you can do so by running:
+`crontab -e` which will create a file to put your cronjob config in, one line for each job.
+
+There is good documentation created but here the line for my weekly job, script says daily but it can be run at any interval you like.: 
+
+`0 9 * * 0 /home/user_one/scripts/daily-photo-video-backup-s3.sh`
 
 ### Problems Encountered
 1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required. You
