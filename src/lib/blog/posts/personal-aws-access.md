@@ -9,7 +9,7 @@ setup to build things on. Setting up access in a secure manner is a prudent to p
 access and racking up false charges. In this post I'll outline the basic pieces you will want to setup with
 your AWS Account to prevent unauthorized access while making it easy to do development.
 
-I reccomend you use a password manager to generate/save the passwords for the users you will create as part of this
+I recommend you use a password manager to generate/save the passwords for the users you will create as part of this
 process. There are many ways to do this but I'll outline what worked for me.
 
 By the end of this you will have:
@@ -20,7 +20,7 @@ By the end of this you will have:
 ### Steps to Create Secure Access
 
 #### Set up the Account
-1. First create your aws account [here](https://aws.amazon.com/). You will be assigned an account id and granted access to
+1. First create your AWS account [here](https://aws.amazon.com/). You will be assigned an account id and granted access to
 a root user for the account.
 
 2. First log in with your root user credentials and enable 2-Factor Authentication for the root account. There are lots of
@@ -45,7 +45,7 @@ it through the UI. Also make sure you assign the `Admin` user to your AWS accoun
 user with the name `my-name-developer` following the same process as the Admin user. This is the user you will use to do development in the account. You should only grant access
 to this user the services you will use.
 
-6. Now we need to download the aws cli so you can connect from your local machine. On mac you can do so using brew: `brew install aws`
+6. Now we need to download the AWS cli so you can connect from your local machine. On mac you can do so using brew: `brew install aws`
 
 7. Now configure the credentials by using `aws configure sso` this will start the setup process.
 
@@ -53,7 +53,7 @@ to this user the services you will use.
 by the field, `AWS access portal URL` copy this URL. Now you need to either open another browser or user Firefox container
 tables to access this URL because we are going to log in as the developer user. Follow the prompts to authenticate and you will
 see a new screen with the AWS Account id you have access to. Click the `Access Keys` link on this page and follow the instructions
-under `AWS IAM Identity Center credentials (Recommended)` to get the required fields to get aws access.
+under `AWS IAM Identity Center credentials (Recommended)` to get the required fields to get AWS access.
 
 ### Wrapping Up
 You now have secure access to your AWS account and can make calls via the cli to AWS after authenticating. The nice

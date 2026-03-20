@@ -9,17 +9,17 @@ which gets us unlimited photos (we have 40 GB worth) and 100 GB of Video (we are
 upgrade to get more video storage but it would cost 60$ per year for 1 TB of video. In addition to cost I also don't have as much control over my photos/videos and makes me reliant on a system that could be shutdown at any time.
 
 To give myself better control over these videos and help my learn more on system management I'm moving to using a self hosted option where I will use my Ubuntu based server with a 2 TB drive to
-store photos and videos with a backup to the could somewhere for long term storage. Monetary cost is not worth the time it requires to manage your own system so if you are considering I recommend you identify more reasons than cost to move to this model. Also you will want to have an offsite backup somewhere in case your local drives fail for some reason. I evaluated two options for cloud storage:
+store photos and videos with a backup to the could somewhere for long term storage. Monetary cost is not worth the time it requires to manage your own system so if you are considering I recommend you identify more reasons than cost to move to this model. Also you will want to have an off-site backup somewhere in case your local drives fail for some reason. I evaluated two options for cloud storage:
 
 1. S3 - Glacier Deep Archive for long term storage.
 2. Backblaze - Backup Solution that has cheaper retrieval costs than pure S3.
 
 ## Basic Parts
 
-I used Immich[https://immich.app/] running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
+I used [Immich](https://immich.app/) running on an Ubuntu Machine to handle the uploading and access of the images. An IOS and
 Android App is provided which makes it easy to upload photos and videos from your phone. I bought an external hard drive and
 mounted it using the `.env` [file](https://immich.app/docs/install/environment-variables/) to set the upload location for photos
-and videos to the usb drive.
+and videos to the USB drive.
 
 Every week a cron job will be run to upload the new images/videos to S3 via a created script. [This repo](https://github.com/dflaten/photo-video-backup) is where those
 scripts will live.
@@ -28,7 +28,7 @@ scripts will live.
 
 #### Immich
 1. First you will need docker so follow the instructions [on docker's docs page](https://docs.docker.com/engine/install/ubuntu/) to get
-it installed on your Ubuntu machine. I reccomend the `apt-get` path so you can update in the future as needed. I needed to
+it installed on your Ubuntu machine. I recommend the `apt-get` path so you can update in the future as needed. I needed to
 start the service after install with `sudo service docker start`.
 
 I first downloaded the repo on my Ubuntu machine then followed the instructions [here](https://immich.app/docs/install/docker-compose/#upgrading) for
@@ -39,28 +39,28 @@ The readme explains how to deploy the infrastructure/permissions needed to execu
 
 The cron job:
 
-If you haven't created any cronjobs yet on your Ubuntu machine you can do so by running:
-`crontab -e` which will create a file to put your cronjob config in, one line for each job.
+If you haven't created any cron jobs yet on your Ubuntu machine you can do so by running:
+`crontab -e` which will create a file to put your cron job config in, one line for each job.
 
 There is good documentation created but here the line for my weekly job, script says daily but it can be run at any interval you like.: 
 
 `0 9 * * 0 /home/user_one/scripts/daily-photo-video-backup-s3.sh`
 
 ### Problems Encountered
-1. At first couldn't get the iphone app to work correctly because I didn't put my local ip address in exactly as required. You
+1. At first couldn't get the IPhone app to work correctly because I didn't put my local ip address in exactly as required. You
 need to put in the entire `http://numbers:port` in order for it to access correctly.
 
-2. A backup incase local storage fails. I'm only using a 2 TB drive hooked to my server which could fail. I need redundency and 
+2. A backup in case local storage fails. I'm only using a 2 TB drive hooked to my server which could fail. I need redundancy and 
 will for now probably look to the cloud to provide.
 
-3. If your machine is ever resarted and then you have trouble getting the clusters to start back up and connect to your devices there are
+3. If your machine is ever restarted and then you have trouble getting the clusters to start back up and connect to your devices there are
 a few things you can try:
     * First try updating your server by running: `docker compose pull && docker compose up --force-recreate`
-    * If you are using a different location than the default you may need to re mount the usb drive where your photos/videos are stored you can do
+    * If you are using a different location than the default you may need to re mount the USB drive where your photos/videos are stored you can do
     a command like `sudo mount /dev/sdb1 /media/usb` to remount it. 
 
 ## Cloud Backup Cost Analysis
-Backblaze costs ~ 6 dollars per month for a terrabyte of storage. This is more expensive than general AWS S3 storage but the
+Backblaze costs ~ 6 dollars per month for a Terabyte of storage. This is more expensive than general AWS S3 storage but the
 closer you get to 1TB the closer the costs come to evening out.
 
 This is based on my current library of photos and videos. My rate of growth is probably less than 1,000 new videos and 100 new

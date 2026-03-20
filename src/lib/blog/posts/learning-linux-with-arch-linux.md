@@ -8,7 +8,7 @@ I had an extra computer around the house and decided to try and install Arch Lin
 because I heard it was a good version but "not for beginners". I wouldn't call myself
 an expert in Linux but decided this could be a good way of learning more about it. After
 starting the installation process it showed me how little I really understood about how
-linux works.
+Linux works.
 
 ### Installation process
 The Arch wiki has an installation guide that is fairly good even if you don't have much experience with Linux. I used that to get through most of the issues I encountered.
@@ -37,7 +37,7 @@ The `nomodeset` option did allow me to continue with the setup. Next I moved on 
 I used `ip link` and  `iwd` to get connected to the internet. 
 
 #### Formatting the Drive
-Next I formatted the disk with `fdisk` setting up the `/boot` parition. I learned about mounting drives with commands like `mount /dev/root_partition /mnt`. 
+Next I formatted the disk with `fdisk` setting up the `/boot` partition. I learned about mounting drives with commands like `mount /dev/root_partition /mnt`. 
 
 #### Installing the OS to your local drive
 `pacstrap -K /mnt base linux linux-firmware` got the system installed on my machine.
@@ -48,4 +48,4 @@ Next I switched my root to the new install since up to this point I had been wor
 I set up a user account here and then tried to Reboot. This is where I ran into the same problem that I did with the USB booting. The drivers for the video card on my machine did not install correctly and I was required to set the `nomodeset` value by default on my machine to keep using it. 
 
 ### Calling it Quits
-Due to the fact that I wanted to test gaming on this PC this is where I decided it wasn't worth going further with this machine. I did learn some interesting things about how linux is setup from it's core and how to get Arch up and running on a machine. I may come back to this in the future but for now will call this learning experience complete!
+Due to the fact that I wanted to test gaming on this PC this is where I decided it wasn't worth going further with this machine. I did learn some interesting things about how Linux is setup from it's core and how to get Arch up and running on a machine. I may come back to this in the future but for now will call this learning experience complete!

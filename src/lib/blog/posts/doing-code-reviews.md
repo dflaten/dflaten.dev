@@ -4,15 +4,15 @@ date: 2025-07-13
 published: true
 ---
 
-Code reviews provide the reviewer and reviewee an opportunity to learn and grow. An important part of the development process on a good team code reviews provide a way for multiple devlopers be invovled in the development process.  
+Code reviews provide the reviewer and the writer an opportunity to learn and grow. An important part of the development process on a good team code reviews provide a way for multiple developers be involved in the development process.  
 
 ### What makes for a good Code Review?
 
 * **What is the problem being solved?** - Before reviewing any of the code make sure you as the reviewer understand the original user story and problem being addressed. Without this you could have great code that solves the wrong problem or misses key parts of the solution regardless of how well the code was written.
 
-* **Ask Questions and focus on the code.** - When providing feedback on a piece of good rather than going immediately for "This is wrong." Ask a question arround why the person chose to make the decision they did there. The coder may have context you don't. Also make sure your comments are focused on the code not the coder.
+* **Ask Questions and focus on the code.** - When providing feedback on a piece of good rather than going immediately for "This is wrong." Ask a question around why the person chose to make the decision they did there. The coder may have context you don't. Also make sure your comments are focused on the code not the coder.
 
-* **Provide reasoning for suggestions** - Don't just make suggesions but give the reasoning behind it. This is a teaching opportunity for the coder!
+* **Provide reasoning for suggestions** - Don't just make suggestions but give the reasoning behind it. This is a teaching opportunity for the coder!
 
 * **Call out the good stuff** - Make sure you highlight where good decisions or new things you learned take place. 
 
