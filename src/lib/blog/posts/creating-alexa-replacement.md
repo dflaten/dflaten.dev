@@ -9,10 +9,15 @@ A few months ago I decided Amazon had enough data from me collected via Alexa an
 self hosted option to replace it. This led me to the [ESP Box 3](https://www.espressif.com/en/dev-board/esp32-s3-box-3-en),
 a piece of hardware which can understand voice commands and execute code which you've uploaded to it. [Documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) is good and can help you get started.
 
+The functionality that I am looking for, connecting to smart lights in the house, simple weather information, music playback
+are all pretty simple and tooling is now available to self host most of this functionality with more control over your data. I don't
+want audio clips captured at random times and sent to some company for them to review or do whatever with. It also would give me 
+some experience coding for a specific hardware with a different sort of user experience.
+
 ### What do you need to get started?
 1. Toolchain to compile code. 
 2. Build Tools - CMake and Ninja to build full Applications.
-3. ESP-IDF that contains the api for ESP-32 and scripts to operate the Toolchain.
+3. ESP-IDF that contains the api for ESP-32 and scripts to operate the toolchain.
 
 ### Installing Dev tools on Linux Machine
 
@@ -30,24 +35,24 @@ for using the ESP-IDF tools inside the terminal, you will find activation script
 sourcing the activation script will setup environment in the current terminal session
 ============================================
 to activate the environment, run the following command in your terminal:
-       source "/home/my-user/.espressif/tools/activate_idf_v5.5.3.sh"
+       source "/home/my_user_name/.espressif/tools/activate_idf_v5.5.3.sh"
 ```
 
 Now I am currently using Fish for my terminal instead of Z shell or Bash so I had to install the tooling by going here:
-`/home/david/.espressif/v5.5.3/esp-idf` and then running `./install.fish esp32` which left me with: 
+`/home/my_user_name/.espressif/v5.5.3/esp-idf` and then running `./install.fish esp32` which left me with: 
 
 
-```
 All done! You can now run:
+```
 
   . /home/david/.espressif/v5.5.3/esp-idf/export.fish
 ```
 
 To activate my environment I used:
-`source /home/david/.espressif/v5.5.3/esp-idf/export.fish`
+`source /home/my_user_name/.espressif/v5.5.3/esp-idf/export.fish`
 
 Which I created an alias for easy access: 
-`alias get_idf='source /home/david/.espressif/v5.5.3/esp-idf/export.fish'`
+`alias get_idf='source /home/my_user_name/.espressif/v5.5.3/esp-idf/export.fish'`
 
 ### Hue Controls
 I started by creating a new project: 
@@ -72,7 +77,7 @@ Get a token from HUE:
 
 Get your group number: 
 ```
-curl -X GET http://192.168.68.60/api/5eYoU3esxjvjeSi2eyA76NwE3kRYuhmXBdnxxYgd/groups | jq
+curl -X GET http://192.168.XX.XX/api/<API-KEY>/groups | jq
 ```
 
 
