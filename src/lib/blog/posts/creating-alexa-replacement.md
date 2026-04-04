@@ -1,27 +1,38 @@
 
 ---
-title: Creating and Alexa Replacement
-date: 2025-03-14
-published: false
+title: Creating and Alexa Replacement using Codex
+date: 2025-04-04
+published: true 
 ---
 
 A few months ago I decided Amazon had enough data from me collected via Alexa and there must be an open source or 
 self hosted option to replace it. This led me to the [ESP Box 3](https://www.espressif.com/en/dev-board/esp32-s3-box-3-en),
 a piece of hardware which can understand voice commands and execute code which you've uploaded to it. [Documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) is good and can help you get started. This has been something
-I've wanted to do for a while but I haven't had a lot of time and my rustiness with 'C' prevented me from giving it a go.
-Thanks to coding agents though it has made building things much easier.
+I've wanted to do for a while but I haven't had a lot of time and my rustiness with 'C' prevented me from giving it a go. Thanks to coding agents though it has made building things much easier especially if you aren't familiar with the language.
 
-### What do you need to get started?
-1. Toolchain to compile . 
-2. Build Tools - CMake and Ninja to build full Applications.
-3. ESP-IDF that contains the api for ESP-32 and scripts to operate the Toolchain.
+I've learned a decent bit about the current state of coding Agents as a part of creating this project. Getting 90% there with a coding Agent is very easy but getting your application to be something that is maintainable, scalable, and understandable by others requires more than just letting the Agent take the wheel, at least for now.
 
-### Installing the Toolchain, Build Tools and ESP-IDF on Linux Machine
+Just like anything you are building it is best to start with a very basic idea and build upon it which is what I've done. There were some tricky bugs that took quite a few iterations with Codex to get solved and the firmware certainly isn't perfect yet but it does do the basics of what I need it to. 
+
+[Here's the Firmware!](https://github.com/dflaten/box3-assistant) If you'd like to build your own follow the directions below!
+
+## Getting Started Instructions 
+
+I'll outline how I went about building the software for the assistant which could help you build something similar.
+
+### We need a toolchain to build the firmware image and get it on the device.
+
+This requires two things:
+1. Build Tools - CMake and Ninja to build full Applications.
+2. ESP-IDF that contains the api for ESP-32 and scripts to operate the Toolchain.
+
+### Installing ESP-IDF on Linux Machine
+
+I'm using a linux machine for development but the overall process is the same on Windows or Mac.
 
 [This page was really useful.](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/linux-macos-setup.html)
 
-I'm using a Linux machine for my development work so I followed those instructions and installed the CLI version of the available
-tooling. 
+I chose the the CLI version of the available tooling which has worked well with Codex for development.
 
 Here's what the terminal looks like once it is finished:
 
@@ -53,8 +64,7 @@ Which I created an alias for easy access:
 
 ### What's Next?
 
-Now that I had the tooling setup I decided I would create a new repo and try building a firmware version for the device using the 
-libraries provided by ESP-IDF. It has been a while since I've used `C` but thanks to [Codex](https://developers.openai.com/codex/cli) 
+After tooling setup its time to start coding. Create a new GIT repo and try building a firmware version for the device using the libraries provided by ESP-IDF. It has been a while since I've used `C` but thanks to [Codex](https://developers.openai.com/codex/cli) 
 I was able to get something working pretty quickly.
 
 ### Hue Controls
@@ -75,12 +85,12 @@ Get a token from HUE:
 ❯ curl -X POST http://<IP_OF_BRIDGE>/api \
         -H "Content-Type: application/json" \
         -d '{"devicetype": "esp_s3_box#mydevice"}'
-[{"success":{"username":"WILL_BE_A_STRING_HERE"}}]⏎
+[{"success":{"username":"{USERNAME_STRING}"}}]⏎
 ```
 
 Get your group number: 
 ```
-curl -X GET http://192.168.68.60/api/5eYoU3esxjvjeSi2eyA76NwE3kRYuhmXBdnxxYgd/groups | jq
+curl -X GET http://192.168.68.60/api/{USERNAME_STRING}/groups | jq
 ```
 
 ### Deploying the project
@@ -92,8 +102,6 @@ idf.py reconfigure
 idf.py build
 ```
 
-```
-```
 Once you are ready to deploy set your target to your ESP Box 3: 
 `idf.py set-target esp32s3`
 
@@ -105,8 +113,9 @@ idf.py menuconfig
 # Set: WiFi Password
 # Save with S, quit with Q
 ```
-```
-```
+
+### Polishing and Expanding
+After getting my hue lights working with my ESP I decided to add basic weather information to the device. A couple of prompts to codex and a bit of direction and I was able to get todays current weather displayed on the device. 
 
 ### Some Other Helpful Information
 Then figure out which port you're ESP is connected to: 
@@ -115,5 +124,6 @@ Then figure out which port you're ESP is connected to:
 Then run:
 `idf.py -p /dev/ttyACM0 build flash monitor`
 
-
+### Now What?
+Now it's up to you! You can build your own firmware or fork mine if you like. Happy building!
 
