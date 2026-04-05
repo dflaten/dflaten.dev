@@ -1,6 +1,19 @@
-.venv
-.vscode
-dist
-.ruff_cache
-.ropeproject
 .DS_Store
+
+# Build output
+dist/
+
+# Python environments and caches
+.venv/
+.codex-venv/
+__pycache__/
+*.py[cod]
+.coverage
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Editor and workspace files
+.vscode/
+.ropeproject/
+.codex

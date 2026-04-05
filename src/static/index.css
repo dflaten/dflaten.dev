@@ -10,7 +10,7 @@ main {
 }
 
 .title {
-    color: #0066b2;
+    color: var(--color-link);
     font-size: 48px;
     line-height: 48px;
     font-weight: bold;
@@ -18,7 +18,7 @@ main {
 
 a {
     text-decoration: none;
-    color: #0066b2;
+    color: var(--color-link);
     font-size: 20px;
 }
 

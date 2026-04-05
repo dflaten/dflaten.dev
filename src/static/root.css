@@ -4,8 +4,17 @@
     line-height: 1.5;
     font-weight: 400;
 
-    background-color: #edf2f8;
-    color: #1a1b1e;
+    color-scheme: light dark;
+    --color-background: #edf2f8;
+    --color-surface: #edf2f8;
+    --color-text: #1a1b1e;
+    --color-text-muted: #696969;
+    --color-link: #0066b2;
+    --color-link-hover: #004d87;
+    --github-icon-filter: none;
+
+    background-color: var(--color-background);
+    color: var(--color-text);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -14,9 +23,33 @@
     -webkit-text-size-adjust: 100%;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --color-background: #11161d;
+        --color-surface: #161d26;
+        --color-text: #e6edf3;
+        --color-text-muted: #9aa8b8;
+        --color-link: #7dc4ff;
+        --color-link-hover: #acd9ff;
+        --github-icon-filter: brightness(0) invert(1);
+    }
+}
+
+:root[data-theme="dark"] {
+    --color-background: #11161d;
+    --color-surface: #161d26;
+    --color-text: #e6edf3;
+    --color-text-muted: #9aa8b8;
+    --color-link: #7dc4ff;
+    --color-link-hover: #acd9ff;
+    --github-icon-filter: brightness(0) invert(1);
+}
+
 body {
     margin: 0;
     padding: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 * {
@@ -56,8 +89,12 @@ textarea {
 
 a {
     text-decoration: none;
-    color: #0066b2;
+    color: var(--color-link);
     line-height: 1;
+}
+
+a:hover {
+    color: var(--color-link-hover);
 }
 
 h1,
@@ -92,7 +129,7 @@ code {
 }
 
 .subtext {
-    color: #696969;
+    color: var(--color-text-muted);
     /* Reduce line height for consistent spacing. */
     line-height: 1;
 }
@@ -104,7 +141,7 @@ header {
     width: 100%;
     z-index: 1;
     padding: 1rem 0;
-    background-color: #edf2f8;
+    background-color: var(--color-surface);
     font-size: 20px;
 
     display: flex;
@@ -129,6 +166,117 @@ header {
     gap: 1em;
 }
 
+.theme-picker {
+    position: relative;
+}
+
+.theme-picker summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid var(--color-text-muted);
+    border-radius: 999px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+}
+
+.theme-picker summary::-webkit-details-marker {
+    display: none;
+}
+
+.theme-picker summary:hover {
+    color: var(--color-link-hover);
+    border-color: var(--color-link-hover);
+}
+
+.theme-picker-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    min-width: 8rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-text-muted);
+    border-radius: 0.75rem;
+    background-color: var(--color-surface);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.theme-picker-menu label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--color-text-muted);
+    font-size: 14px;
+}
+
+.theme-picker-menu label:last-child {
+    margin-bottom: 0;
+}
+
+.theme-picker-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.theme-picker-option {
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 0.35rem 0.6rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.theme-picker-option:hover {
+    color: var(--color-link-hover);
+    border-color: var(--color-link-hover);
+}
+
+.theme-picker-option[aria-pressed="true"] {
+    border-color: var(--color-link);
+    color: var(--color-link);
+}
+
+.theme-picker-icon {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+@media (max-width: 640px) {
+    .theme-picker summary {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .theme-picker-icon {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+
+    .nav-bar-social-link img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .nav-bar-title {
     font-size: 24px;
     font-weight: bold;
@@ -141,6 +289,14 @@ header {
 /* Setting the line-height to 0 here makes these links the same size as their content. */
 .nav-bar-social-link {
     line-height: 0;
+}
+
+.nav-bar-social-link img {
+    display: block;
+}
+
+.github-social-icon {
+    filter: var(--github-icon-filter);
 }
 /* We don't want bullets in front of our checklists*/
 li:has(input[type="checkbox"]) {
