@@ -30,59 +30,6 @@
                     <a class="nav-bar-link" href="/projects/">Projects</a>
                 </div>
                 <div class="nav-bar-title-right">
-                    <details class="theme-picker" data-theme-menu>
-                        <summary aria-label="Theme settings">
-                            <svg
-                                class="theme-picker-icon"
-                                aria-hidden="true"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path d="M12 3v2.5" />
-                                <path d="M12 18.5V21" />
-                                <path d="M3 12h2.5" />
-                                <path d="M18.5 12H21" />
-                                <path d="M5.6 5.6l1.8 1.8" />
-                                <path d="M16.6 16.6l1.8 1.8" />
-                                <path d="M5.6 18.4l1.8-1.8" />
-                                <path d="M16.6 7.4l1.8-1.8" />
-                                <path d="M15.5 12a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0Z" />
-                            </svg>
-                        </summary>
-                        <div class="theme-picker-menu">
-                            <label>
-                                Theme:
-                                <span data-theme-current-label>Auto</span>
-                            </label>
-                            <div class="theme-picker-options">
-                                <button
-                                    class="theme-picker-option"
-                                    type="button"
-                                    data-theme-option="auto"
-                                >
-                                    Auto
-                                </button>
-                                <button
-                                    class="theme-picker-option"
-                                    type="button"
-                                    data-theme-option="light"
-                                >
-                                    Light
-                                </button>
-                                <button
-                                    class="theme-picker-option"
-                                    type="button"
-                                    data-theme-option="dark"
-                                >
-                                    Dark
-                                </button>
-                            </div>
-                        </div>
-                    </details>
                     <a
                         class="nav-bar-social-link"
                         href="https://github.com/dflaten"
@@ -113,5 +60,40 @@
                 {posts}
             </div>
         </main>
+        <details class="theme-picker theme-picker-floating" data-theme-menu>
+            <summary aria-label="Theme settings">
+                <svg
+                    class="theme-picker-icon"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M12 3v2.5" />
+                    <path d="M12 18.5V21" />
+                    <path d="M3 12h2.5" />
+                    <path d="M18.5 12H21" />
+                    <path d="M5.6 5.6l1.8 1.8" />
+                    <path d="M16.6 16.6l1.8 1.8" />
+                    <path d="M5.6 18.4l1.8-1.8" />
+                    <path d="M16.6 7.4l1.8-1.8" />
+                    <path d="M15.5 12a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0Z" />
+                </svg>
+            </summary>
+            <div class="theme-picker-menu">
+                <label>
+                    Theme:
+                    <span data-theme-current-label>Auto</span>
+                </label>
+                <div class="theme-picker-options">
+                    <button class="theme-picker-option" type="button" data-theme-option="auto">Auto</button>
+                    <button class="theme-picker-option" type="button" data-theme-option="light">Light</button>
+                    <button class="theme-picker-option" type="button" data-theme-option="dark">Dark</button>
+                </div>
+            </div>
+        </details>
     </body>
 </html>

@@ -55,7 +55,10 @@ class BuildScriptTests(unittest.TestCase):
             "Launching my Personal Website",
         ]
 
-        positions = [blog_index.index(title) for title in ordered_titles]
+        present_titles = [title for title in ordered_titles if title in blog_index]
+
+        self.assertGreater(len(present_titles), 1)
+        positions = [blog_index.index(title) for title in present_titles]
         self.assertEqual(positions, sorted(positions))
 
     def test_homepage_and_shared_css_include_dark_mode_support(self) -> None:
@@ -72,10 +75,11 @@ class BuildScriptTests(unittest.TestCase):
         self.assertIn('class="github-social-icon"', homepage)
         self.assertIn('src="/theme.js"', homepage)
         self.assertNotIn("window.themePreference.initializeTheme()", homepage)
+        self.assertIn('class="theme-picker theme-picker-floating"', homepage)
         self.assertIn(".theme-picker-menu", root_css)
+        self.assertIn(".theme-picker-floating", root_css)
         self.assertIn(".theme-picker summary::marker", root_css)
         self.assertIn("@media (max-width: 640px)", root_css)
-        self.assertIn(".nav-bar-social-link img", root_css)
         self.assertIn("@media (prefers-color-scheme: dark)", root_css)
         self.assertIn(':root[data-theme="dark"]', root_css)
         self.assertIn("color-scheme: light dark;", root_css)

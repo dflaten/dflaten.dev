@@ -170,6 +170,13 @@ header {
     position: relative;
 }
 
+.theme-picker-floating {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 10;
+}
+
 .theme-picker summary {
     display: flex;
     align-items: center;
@@ -207,6 +214,11 @@ header {
     border-radius: 0.75rem;
     background-color: var(--color-surface);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.theme-picker-floating .theme-picker-menu {
+    top: auto;
+    bottom: calc(100% + 0.5rem);
 }
 
 .theme-picker-menu label {
@@ -253,19 +265,9 @@ header {
 }
 
 @media (max-width: 640px) {
-    .theme-picker summary {
-        width: 1.8rem;
-        height: 1.8rem;
-    }
-
-    .theme-picker-icon {
-        width: 0.95rem;
-        height: 0.95rem;
-    }
-
-    .nav-bar-social-link img {
-        width: 24px;
-        height: 24px;
+    .theme-picker-floating {
+        right: 0.9rem;
+        bottom: 0.9rem;
     }
 }
 
