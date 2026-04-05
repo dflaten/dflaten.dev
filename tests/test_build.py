@@ -73,6 +73,7 @@ class BuildScriptTests(unittest.TestCase):
         self.assertIn('src="/theme.js"', homepage)
         self.assertNotIn("window.themePreference.initializeTheme()", homepage)
         self.assertIn(".theme-picker-menu", root_css)
+        self.assertIn(".theme-picker summary::marker", root_css)
         self.assertIn("@media (max-width: 640px)", root_css)
         self.assertIn(".nav-bar-social-link img", root_css)
         self.assertIn("@media (prefers-color-scheme: dark)", root_css)

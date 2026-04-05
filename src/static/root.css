@@ -184,6 +184,10 @@ header {
     list-style: none;
 }
 
+.theme-picker summary::marker {
+    content: "";
+}
+
 .theme-picker summary::-webkit-details-marker {
     display: none;
 }
@@ -250,18 +254,18 @@ header {
 
 @media (max-width: 640px) {
     .theme-picker summary {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.8rem;
+        height: 1.8rem;
     }
 
     .theme-picker-icon {
-        width: 0.8rem;
-        height: 0.8rem;
+        width: 0.95rem;
+        height: 0.95rem;
     }
 
     .nav-bar-social-link img {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
     }
 }
 
