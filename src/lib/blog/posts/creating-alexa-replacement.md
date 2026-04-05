@@ -1,6 +1,6 @@
 
 ---
-title: Creating and Alexa Replacement using Codex
+title: Creating an Alexa Replacement with help from Codex
 date: 2026-04-04
 published: true 
 ---
