@@ -8,7 +8,7 @@ published: true
 A few months ago I decided Amazon had enough data from me collected via Alexa and there must be an open source or 
 self hosted option to replace it. This led me to the [ESP Box 3](https://www.espressif.com/en/dev-board/esp32-s3-box-3-en),
 a piece of hardware which can understand voice commands and execute code which you've uploaded to it. [Documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) is good and can help you get started. This has been something
-I've wanted to do for a while but I haven't had a lot of time and my rustiness with 'C' prevented me from giving it a go. Thanks to coding agents though it has made building things much easier especially if you aren't familiar with the language.
+I've wanted to do for a while but I haven't had a lot of time and my rustiness with `C` prevented me from giving it a go. Thanks to coding agents though it has made building things much easier especially if you aren't familiar with the language.
 
 I've learned a decent bit about the current state of coding Agents as a part of creating this project. Getting 90% there with a coding Agent is very easy but getting your application to be something that is maintainable, scalable, and understandable by others requires more than just letting the Agent take the wheel, at least for now.
 
