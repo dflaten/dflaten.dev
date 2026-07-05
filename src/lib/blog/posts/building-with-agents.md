@@ -5,15 +5,15 @@ date: 2026-06-20
 published: true 
 ---
 
-Much has been said and written about LLMs and how they are changing the world. I won't pretend to know how it is changing the world but I have been watching how it has changed my work as a Software Engineer.
+Much has been said and written about LLMs and how they are changing the world which is probably true but invisible to most. I won't pretend to know more than my own experience but it has changed my work as a Software Engineer.
 
-In the last 15 years in my work I've always been surrounded by software engineers though I've only been an engineer for ~7. In all that time I've seen a lot of change but the last year has been the fastest and biggest shift by far. Agentic coding, that is creating software by prompting an LLM, changed the how and speed at which code can be written at times from days to minutes.
+In the last 15 years in my work I've been surrounded by software engineers though I've only been an engineer for ~7. In all that time I've seen a lot of change but the last year has been the fastest and biggest shift by far. Agentic coding, that is creating software by prompting an LLM, changed the how and speed at which code can be written at times from days to minutes, at least in the best case. At times even the best models now can waste a lot of a developers time taking more time to complete a task than if the developer had just done it themselves. If care is used the tools can accelerate your productivity but you can't fall into the trap of not thinking while you are working and closely tracking what is being done.
 
 There is now a new set of skills you need to have in order to be an effective engineer and some skills have become much less important. Understanding syntax of language and the ability to recall and type it accurately no longer speeds you up as a developer. Deep knowledge of your IDE doesn't hold the high value it use to and neither does typing speed/accuracy. Of course all these things are still good to know and you must have at least the basics down but their overall importance has diminished.
 
-Some old things have become more important. The ability to read and review code and structure it in a sustainable way. Systems design and writing design docs have become more important. Breaking tasks down into small enough pieces for the AI to efficiently work on has become key. The AI can't make decisions on its own and if you let it often it will make bad assumptions and therefore bad decisions.
+Some old things have become more important. The ability to read and review code and structure it in a sustainable way. Systems design and writing design docs have become more important. Breaking tasks down into small enough pieces for the AI to efficiently work on has become key. The AI can't make decisions on its own and if you let it often it will make bad assumptions and therefore bad decisions. You must also be able to track what tasks the Agent is doing and about how long it should take to do it.
 
-New skills have appeared including the ability to effectively prompt an AI to build things.
+New skills have appeared including the ability to effectively prompt an AI to build things, when and how to create skills for an Agent as well as how to make adjustments to the behavior of the tool through things like an AGENTS.md file. The most important skill though is being flexible and adjusting as Agents evolve. Perfect prompts and AGENT.MD files will quickly loose their effectiveness as new models are released unless you are making constant adjustments.
 
 ## Actual Experience
 I've built/rebuilt three different projects in 5 languages outside of work giving me some solid experience using Agents. There is much 
