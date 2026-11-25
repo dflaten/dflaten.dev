@@ -37,15 +37,3 @@ development dependencies.
 `.github/workflows/ci.yaml` runs lint, typecheck, tests, and the build on every push to `main` and
 on pull requests. Pushes to `main` (and manual dispatches) then deploy `dist/` to Cloudflare Pages
 with `wrangler pages deploy`. Pull requests get the checks without the deploy.
-
-## Search engines and AI crawlers
-
-Search engines are welcome: `src/static/robots.txt` allows all crawlers and points at the
-generated `sitemap.xml`.
-
-AI crawlers, training bots, and agents are not. `robots.txt` disallows `GPTBot`, `OAI-SearchBot`,
-`ChatGPT-User`, `ClaudeBot`, `Google-Extended`, `CCBot`, `PerplexityBot`, `Bytespider`, and a
-number of others by name. To block another bot, add its user agent to that block.
-
-`robots.txt` is voluntary, so this only stops crawlers that respect it. For enforcement at the
-edge, enable Cloudflare's "Block AI bots" setting (WAF → Bots) for the zone as well.
