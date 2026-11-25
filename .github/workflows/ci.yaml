@@ -22,10 +22,9 @@ jobs:
       - name: Build
         run: make build
       - name: Deploy
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: dflaten-dev
-          directory: dist
+          command: pages deploy dist --project-name=dflaten-dev
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
