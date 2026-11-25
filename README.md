@@ -1,22 +1,39 @@
 # dflaten.dev
 
-This is the repo for my personal website, [dflaten.dev](https://www.dflaten.dev). It's written using
-plain HTML and CSS (there's actually no Javascript at all), along with a single Python build script
-that converts my blog posts from Markdown to HTML and creates the blog index page. I forked this
-from [@vijayp](https://github.com/arnath/vijayp.dev) as I appreciated its minimal html/javascript and
-its ability to easily add new entries to a blog two things I had been looking for when trying to 
-create my own site.
+This is the repo for my personal website, [dflaten.dev](https://www.dflaten.dev). It's plain
+HTML and CSS with a small amount of JavaScript (the theme picker and syntax highlighting), plus a
+single Python build script that converts blog posts from Markdown to HTML and generates the blog
+index. I forked this from [@vijayp](https://github.com/arnath/vijayp.dev) as I
+appreciated its minimal html/javascript and its ability to easily add new entries to a blog — two
+things I had been looking for when trying to create my own site.
 
-## Usage
+## Requirements
 
-This repo uses make and [uv](https://docs.astral.sh/uv/) as build tools. Any other tools (including
-Python) will be automatically fetched by the commands below. Once you have those, there are only two
-commands:
+- [uv](https://docs.astral.sh/uv/) — fetches Python and the Python dependencies automatically.
+- `make`
+- [pandoc](https://pandoc.org/installing.html) — the build shells out to it to render Markdown.
+  CI installs **3.1.11.1**; use the same version locally, since rendering can change between
+  pandoc releases.
 
-- `make build` - Builds the site and outputs it into the `dist/` folder.
-- `make serve` - Uses Python's `http.server` to serve the website at `http://localhost:8080`.
+## Commands
 
-## Changes
-For python development (build script) use `uv sync` to setup your venv after cloning the repo. 
+| Command | What it does |
+| --- | --- |
+| `make build` | Builds the site into `dist/`. |
+| `make serve` | Serves `dist/` at `http://localhost:8080` with Python's `http.server`. |
+| `make test` | Runs the build's unit tests. |
+| `make lint` | Runs `ruff` (via `uv run`). |
+| `make typecheck` | Runs `pyrefly` (via `uv run`). |
+| `make check` | Runs lint, typecheck, and tests — the same checks CI runs. |
 
-For typing I'm using [pyrefly](https://pyrefly.org/), check typing with `uv run pyrefly check`.
+## Development
+
+Run `uv sync` after cloning to create the virtualenv. Typing is checked with
+[pyrefly](https://pyrefly.org/) and linting with [ruff](https://docs.astral.sh/ruff/); both are
+development dependencies.
+
+## CI and deployment
+
+`.github/workflows/ci.yaml` runs lint, typecheck, tests, and the build on every push to `main` and
+on pull requests. Pushes to `main` (and manual dispatches) then deploy `dist/` to Cloudflare Pages
+with `wrangler pages deploy`. Pull requests get the checks without the deploy.

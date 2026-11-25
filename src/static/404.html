@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Page not found — dflaten.dev</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="icon" type="image/x-icon" href="/favicon.png" />
+        <script>
+            (() => {
+                const storedPreference = localStorage.getItem("theme-preference");
+                const preference =
+                    storedPreference === "light" || storedPreference === "dark"
+                        ? storedPreference
+                        : "auto";
+                document.documentElement.dataset.theme = preference;
+            })();
+        </script>
+        <link rel="stylesheet" href="/root.css" />
+        <script defer src="/theme.js"></script>
+        <style>
+            main {
+                max-width: 40rem;
+                margin: 15vh auto;
+                padding: 0 1.5rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin: 0 0 0.5rem;
+            }
+
+            p {
+                color: var(--color-text-muted);
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <h1>404</h1>
+            <p>That page doesn't exist.</p>
+            <p>
+                <a href="/">Back to dflaten.dev</a> ·
+                <a href="/blog/">Read the blog</a>
+            </p>
+        </main>
+    </body>
+</html>

@@ -4,7 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>dflaten.dev</title>
+        <title>{title} — dflaten.dev</title>
+        <meta name="description" content="{description}" />
+        <link rel="canonical" href="{url}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="dflaten.dev" />
+        <meta property="og:title" content="{title}" />
+        <meta property="og:description" content="{description}" />
+        <meta property="og:url" content="{url}" />
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
         <script>
             (() => {{
@@ -17,7 +24,26 @@
             }})();
         </script>
         <link rel="stylesheet" href="/root.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tomorrow-night-blue.min.css"
+            integrity="sha384-YOfUgH9PAkqb1abkILBVW4J5mNn66COySzyxZrrlWGqHLOplM6AnmdNqNne3tNv+"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+            integrity="sha384-F/bZzf7p3Joyp5psL90p/p89AZJsndkSoGwRpXcZhleCWhd8SnRuoYo4d0yirjJp"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
         <script defer src="/theme.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {{
+                hljs.highlightAll();
+            }});
+        </script>
     </head>
 
     <body>
@@ -39,13 +65,14 @@
                             src="/github-logo.png"
                             width="24"
                             height="24"
+                            alt="GitHub"
                     /></a>
                     <a
                         class="nav-bar-social-link"
                         href="https://www.linkedin.com/in/david-flaten0/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        ><img src="/linkedin-logo.png" width="24" height="24"
+                        ><img src="/linkedin-logo.png" width="24" height="24" alt="LinkedIn"
                     /></a>
                 </div>
             </header>
@@ -88,13 +115,5 @@
                 </div>
             </div>
         </details>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tomorrow-night-blue.min.css"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <script>
-            hljs.highlightAll();
-        </script>
     </body>
 </html>
