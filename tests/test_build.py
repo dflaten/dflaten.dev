@@ -27,7 +27,6 @@ class BuildScriptTests(unittest.TestCase):
         self.assertTrue((self.output_dir / "index.html").exists())
         self.assertTrue((self.output_dir / "404.html").exists())
         self.assertTrue((self.output_dir / "robots.txt").exists())
-        self.assertTrue((self.output_dir / "_headers").exists())
         self.assertTrue((self.output_dir / "root.css").exists())
         self.assertTrue((self.output_dir / "theme.js").exists())
         self.assertTrue((self.output_dir / "projects" / "index.html").exists())
@@ -96,23 +95,22 @@ class BuildScriptTests(unittest.TestCase):
         self.assertIn('<div class="subtext">July 13, 2025</div>', post_page)
         self.assertIn("hljs.highlightAll();", post_page)
 
-    def test_robots_disallows_crawlers(self) -> None:
+    def test_sitemap_lists_published_posts(self) -> None:
+        sitemap = self.read_output("sitemap.xml")
+
+        self.assertIn("<loc>https://www.dflaten.dev/</loc>", sitemap)
+        self.assertIn(
+            "<loc>https://www.dflaten.dev/blog/doing-code-reviews/</loc>", sitemap
+        )
+        self.assertNotIn("building-custom-llm", sitemap)
+
+    def test_robots_allows_search_engines_but_not_ai_crawlers(self) -> None:
         robots = self.read_output("robots.txt")
 
-        self.assertIn("User-agent: *", robots)
-        self.assertIn("Disallow: /", robots)
-
-    def test_pages_are_not_indexable(self) -> None:
-        for page in (
-            "index.html",
-            "blog/index.html",
-            "projects/index.html",
-            "blog/doing-code-reviews/index.html",
-        ):
-            self.assertIn(
-                '<meta name="robots" content="noindex, nofollow" />',
-                self.read_output(page),
-            )
+        self.assertIn("User-agent: *\nAllow: /", robots)
+        for bot in ("GPTBot", "ClaudeBot", "CCBot", "PerplexityBot", "Google-Extended"):
+            self.assertIn(f"User-agent: {bot}", robots)
+        self.assertIn("Sitemap: https://www.dflaten.dev/sitemap.xml", robots)
 
 
 if __name__ == "__main__":

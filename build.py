@@ -51,6 +51,38 @@ def format_date(value: date) -> str:
     return f"{value:%B} {value.day}, {value.year}"
 
 
+def write_sitemap(
+    output_directory: str, posts: list[tuple[str, date]]
+) -> None:
+    """Write sitemap.xml covering the static pages and published posts."""
+    entries: list[tuple[str, date | None]] = [
+        (f"{SITE_URL}/", None),
+        (f"{SITE_URL}/blog/", None),
+        (f"{SITE_URL}/projects/", None),
+    ]
+    entries.extend((f"{SITE_URL}/blog/{slug}/", published) for slug, published in posts)
+
+    urls = []
+    for loc, lastmod in entries:
+        if lastmod is None:
+            urls.append(f"    <url><loc>{loc}</loc></url>")
+        else:
+            urls.append(
+                f"    <url><loc>{loc}</loc>"
+                f"<lastmod>{lastmod.isoformat()}</lastmod></url>"
+            )
+
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls)
+        + "\n</urlset>\n"
+    )
+    sitemap_path = os.path.join(output_directory, "sitemap.xml")
+    with open(sitemap_path, "w", encoding="utf-8") as file:
+        file.write(sitemap)
+
+
 def build() -> None:
     # This script writes output to the dist/ directory. If the directory exists,
     # delete it.
@@ -67,6 +99,7 @@ def build() -> None:
     posts_directory: Path = Path("src/lib/blog/posts")
     post_dates: list[date] = []
     post_html_snippets: list[str] = []
+    published_posts: list[tuple[str, date]] = []
     for file in sorted(posts_directory.glob("*.md")):
         slug = file.stem
 
@@ -100,6 +133,7 @@ def build() -> None:
 </div>
 """)
         post_dates.append(post_date)
+        published_posts.append((slug, post_date))
 
         # Write the formatted post to the output directory.
         post_path = os.path.join(output_directory, "blog", slug)
@@ -124,6 +158,8 @@ def build() -> None:
         os.path.join(output_directory, "blog", "index.html"), "w", encoding="utf-8"
     ) as file:
         file.write(index_html)
+
+    write_sitemap(output_directory, published_posts)
 
 
 if __name__ == "__main__":

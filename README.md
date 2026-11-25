@@ -38,13 +38,14 @@ development dependencies.
 on pull requests. Pushes to `main` (and manual dispatches) then deploy `dist/` to Cloudflare Pages
 with `wrangler pages deploy`. Pull requests get the checks without the deploy.
 
-## Search engines
+## Search engines and AI crawlers
 
-The site is intentionally not indexable:
+Search engines are welcome: `src/static/robots.txt` allows all crawlers and points at the
+generated `sitemap.xml`.
 
-- `src/static/robots.txt` disallows all crawlers.
-- `src/static/_headers` sends `X-Robots-Tag: noindex, nofollow` for every response on Cloudflare
-  Pages.
-- Every page also carries `<meta name="robots" content="noindex, nofollow" />`.
+AI crawlers, training bots, and agents are not. `robots.txt` disallows `GPTBot`, `OAI-SearchBot`,
+`ChatGPT-User`, `ClaudeBot`, `Google-Extended`, `CCBot`, `PerplexityBot`, `Bytespider`, and a
+number of others by name. To block another bot, add its user agent to that block.
 
-There is no sitemap, since sitemaps only exist to help crawlers.
+`robots.txt` is voluntary, so this only stops crawlers that respect it. For enforcement at the
+edge, enable Cloudflare's "Block AI bots" setting (WAF → Bots) for the zone as well.
