@@ -27,6 +27,7 @@ class BuildScriptTests(unittest.TestCase):
         self.assertTrue((self.output_dir / "index.html").exists())
         self.assertTrue((self.output_dir / "404.html").exists())
         self.assertTrue((self.output_dir / "robots.txt").exists())
+        self.assertTrue((self.output_dir / "_headers").exists())
         self.assertTrue((self.output_dir / "root.css").exists())
         self.assertTrue((self.output_dir / "theme.js").exists())
         self.assertTrue((self.output_dir / "projects" / "index.html").exists())
@@ -95,14 +96,23 @@ class BuildScriptTests(unittest.TestCase):
         self.assertIn('<div class="subtext">July 13, 2025</div>', post_page)
         self.assertIn("hljs.highlightAll();", post_page)
 
-    def test_sitemap_lists_published_posts(self) -> None:
-        sitemap = self.read_output("sitemap.xml")
+    def test_robots_disallows_crawlers(self) -> None:
+        robots = self.read_output("robots.txt")
 
-        self.assertIn("<loc>https://www.dflaten.dev/</loc>", sitemap)
-        self.assertIn(
-            "<loc>https://www.dflaten.dev/blog/doing-code-reviews/</loc>", sitemap
-        )
-        self.assertNotIn("building-custom-llm", sitemap)
+        self.assertIn("User-agent: *", robots)
+        self.assertIn("Disallow: /", robots)
+
+    def test_pages_are_not_indexable(self) -> None:
+        for page in (
+            "index.html",
+            "blog/index.html",
+            "projects/index.html",
+            "blog/doing-code-reviews/index.html",
+        ):
+            self.assertIn(
+                '<meta name="robots" content="noindex, nofollow" />',
+                self.read_output(page),
+            )
 
 
 if __name__ == "__main__":
