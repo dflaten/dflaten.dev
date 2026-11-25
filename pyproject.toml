@@ -3,17 +3,17 @@ name = "dflaten-dev"
 version = "0.1.0"
 description = "Personal Website for David Flaten"
 readme = "README.md"
-requires-python = "==3.13.1"
+requires-python = ">=3.13,<3.14"
 dependencies = []
 
 [dependency-groups]
 dev = [
     "frontmatter>=3.0.8",
-    "pandoc>=2.4",
     "ruff>=0.9.1",
     "pyrefly"
 ]
 [tool.pyrefly]
-project_includes = ["*.py"]
+project_includes = ["*.py", "tests/**/*.py"]
 project_excludes = ["**/.[!/.]*", "**/*venv/**"]
+search_path = ["."]
 ignore_errors_in_generated_code = true

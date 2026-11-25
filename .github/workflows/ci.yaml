@@ -4,27 +4,44 @@ on:
   workflow_dispatch:
   push:
     branches: main
+  pull_request:
+    branches: main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   ci:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
       deployments: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      # Keep this in sync with the pandoc version installed locally: rendering
+      # can change between pandoc releases.
       - uses: pandoc/actions/setup@v1
         with:
-          version: 3.2.1
-      - uses: astral-sh/setup-uv@v5
+          version: 3.1.11.1
+      - uses: astral-sh/setup-uv@v10
         with:
-          version: 0.5.18
+          version: 0.10.12
+          enable-cache: true
+      - name: Lint
+        run: make lint
+      - name: Type check
+        run: make typecheck
+      - name: Test
+        run: make test
       - name: Build
         run: make build
       - name: Deploy
+        if: github.event_name != 'pull_request'
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=dflaten-dev
+          command: pages deploy dist --project-name=dflaten-dev --branch=${{ github.ref_name }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
