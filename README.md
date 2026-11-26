@@ -1,6 +1,6 @@
 # dflaten.dev
 
-This is the repo for my personal website, [dflaten.dev](https://www.dflaten.dev). It's plain
+This is the repo for my personal website, [dflaten.dev](https://dflaten.dev). It's plain
 HTML and CSS with a small amount of JavaScript (the theme picker and syntax highlighting), plus a
 single Python build script that converts blog posts from Markdown to HTML and generates the blog
 index. I forked this from [@vijayp](https://github.com/arnath/vijayp.dev) as I
